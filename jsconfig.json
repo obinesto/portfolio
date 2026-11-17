@@ -2,6 +2,9 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   }
 }

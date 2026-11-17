@@ -1,129 +1,141 @@
 @tailwind base;
+
 @tailwind components;
+
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 11, 18, 33;
-  --background-end-rgb: 11, 18, 33;
+  color-scheme: light;
+  --background: #edf1f3;
+  --foreground: #18313d;
+  --accent: #3147c7;
+  --muted: #526775;
+  --surface: #e0e7eb;
+  --line: #b9c7cf;
+  --paper: #f8fafb;
 }
 
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #14242d;
+  --foreground: #e7edf1;
+  --accent: #a3b2ff;
+  --muted: #a9bac5;
+  --surface: #1e333e;
+  --line: #3b515e;
+  --paper: #192e39;
+}
 
-*{
+* {
+  box-sizing: border-box;
+}
+
+html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
 }
 
-.font-mono {
-  font-family: var(--font-roboto-mono);
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button,
+a,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+summary {
+  cursor: pointer;
+}
+
+button {
+  color: inherit;
+}
+
+button:disabled {
+  cursor: wait;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 500;
+}
+
+em {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: clamp(38px, 4.8vw, 68px);
+  line-height: 1.08;
+  letter-spacing: -0.065em;
+}
+
+h2 em {
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+
+  html {
+    scroll-padding-top: 90px;
   }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+
+  h2 {
+    font-size: 43px;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
-}
-
-.projects-container {
-  position: relative;
-  --x-offset: -50px;
-  --y-offset: -50px;
-  overflow: hidden;
-}
-
-.projects-container::before,
-.projects-container::after {
-  content: '';
-  background-color: #0A192F;
-  height: 100px;
-  position: absolute;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.projects-container::before {
-  inset: var(--y-offset) var(--x-offset) 0;
-}
-
-.projects-container::after {
-  inset: 0 var(--x-offset) var(--y-offset);
-  top: unset;
-}
-
-.projects-scrollable {
-  display: flex;
-  gap: 2rem;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-
-.projects-scrollable::-webkit-scrollbar {
-  display: none;
-}
-
-.project-item {
-  flex: 0 0 auto;
-  background-color: #1A2332;
-  border-radius: 0.5rem;
-  width: 400px;
-  height: 600px;
-  padding: 1rem 0rem 0rem 0rem;
 }

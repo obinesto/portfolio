@@ -1,17 +1,42 @@
-import { Inter, Roboto_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
-import Script from "next/script";
+import "./styles.css";
+import { ThemeProvider } from "../providers/theme-provider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const robotoMono = Roboto_Mono({
-  subsets: ["latin"],
+const inter = localFont({
+  src: "../assets/fonts/Inter-latin.woff2",
+  weight: "100 900",
+  display: "swap",
+  variable: "--font-inter",
+});
+const robotoMono = localFont({
+  src: "../assets/fonts/RobotoMono-latin.woff2",
+  weight: "100 700",
+  display: "swap",
   variable: "--font-roboto-mono",
 });
 
 export const metadata = {
-  title: "Cyprian Obi - Web and Full-stack Developer",
+  metadataBase: new URL("https://me.obinestotech.com"),
+  title: "Cyprian Obi — Full Stack Engineer",
   description:
-    "Experienced full-stack developer specializing in modern web applications, scalable backend solutions, and intuitive user experiences.",
+    "Full Stack Engineer in Nigeria, building digital products from early requirements through delivery and continued improvement. Explore selected work and get in touch.",
+  openGraph: {
+    title: "Cyprian Obi — Full Stack Engineer",
+    description:
+      "Digital products built with care, from the experience people see to the systems they depend on. Selected work by Cyprian Obi.",
+    url: "https://me.obinestotech.com",
+    siteName: "Cyprian Obi",
+    type: "website",
+    images: [
+      {
+        url: "/profile.jpg",
+        width: 1744,
+        height: 1527,
+        alt: "Cyprian Obi",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -21,18 +46,8 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${inter.variable} ${robotoMono.variable}`}
     >
-      <body
-        className={`${inter.className} bg-[#0A192F] text-white min-h-screen`}
-      >
-        {children}
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"
-          strategy="afterInteractive"
-        />
+      <body className={inter.className}>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
